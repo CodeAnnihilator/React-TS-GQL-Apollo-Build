@@ -1,0 +1,10 @@
+@import "resources/styles/scss-variables.scss";
+@import "resources/styles/css-variables.scss";
+@import "resources/styles/font-face.scss";
+
+body {
+	margin: 0;
+	font-family: Cairo, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
