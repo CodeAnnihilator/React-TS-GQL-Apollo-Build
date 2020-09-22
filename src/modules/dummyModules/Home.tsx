@@ -1,24 +1,12 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+
+import { useGetMyTodosQuery } from 'generated/graphql';
 
 import styles from './home.module.scss';
 
-const EXCHANGE_RATES = gql`
-	query GetExchangeRates {
-		rates(currency: "USD") {
-			currency
-			rate
-		}
-	}
-`;
+const Home = () => {
 
-interface IHome {
-  currency: string;
-  rate: number;
-}
-
-export default function Home() {
-	const { loading, error, data } = useQuery(EXCHANGE_RATES);
+	const { loading, error, data } = useGetMyTodosQuery();
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(</p>;
@@ -26,14 +14,10 @@ export default function Home() {
 	return (
 		<div className={styles.header}>
 			{
-				data.rates.map(({currency, rate}: IHome) => (
-					<div key={currency}>
-						<p>
-							{currency}: {rate}
-						</p>
-					</div>	
-				))
+				data?.todos.map(({id, title}) => <div key={id}>{title}</div>)
 			}
 		</div>
 	)
 }
+
+export default Home;
