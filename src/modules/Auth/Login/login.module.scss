@@ -1,0 +1,26 @@
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.devider {
+    border-bottom: 1px dashed silver;
+    display: flex;
+    flex: 1 1;
+    margin: 10px 0;
+}
+
+.noAccount {
+    display: flex;
+    flex: 1 1;
+    align-self: center;
+    font-size: 0.8em;
+    margin: 10px 0 5px 0;
+    color: #2d3745;
+}
+
+.boldedLink {
+	margin-left: 5px;
+    text-decoration: underline;
+    color: #03a0ff;
+}

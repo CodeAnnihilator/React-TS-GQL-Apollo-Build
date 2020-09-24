@@ -1,0 +1,49 @@
+.input {
+    display: flex;
+    line-height: 23px;
+    padding: 15px 20px;
+    color: #2d3745;
+    margin: 5px 0;
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.05);
+    font-size: 0.9em;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.inputContainer {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+.label {
+	text-transform: capitalize;
+    color: #2d3745;
+    font-size: 0.8em;
+    margin: 5px 20px;
+}
+
+.labelWrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.error {
+    color: #ff0a0a;
+    font-size: 0.8em;
+    margin: 5px 20px;
+}
+
+.valid {
+    color: #4caf50;
+    font-size: 0.8em;
+    margin: 5px 20px;
+}

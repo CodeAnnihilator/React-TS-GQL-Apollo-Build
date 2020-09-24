@@ -1,6 +1,12 @@
 @import "resources/styles/scss-variables.scss";
 @import "resources/styles/css-variables.scss";
 @import "resources/styles/font-face.scss";
+@import "resources/styles/responsive-mixins.scss";
+
+#root {
+	height: 100vh;
+    display: flex;
+}
 
 body {
 	margin: 0;
