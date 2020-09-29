@@ -1,27 +1,26 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
-const RouteWrapper = ({
+import { useGetCurrentUserLocalQuery } from 'generated/graphql';
+
+const SecureRoute = ({
 	component: Component,
 	layout: Layout,
 	isProtected,
 	...rest
-}: any) => {
-
-	return (
-		<Route
-			{...rest}
-			render={(props) =>
-				Layout ? (
+}: any) => (
+	<Route
+		{...rest}
+		render={(props) =>
+			Layout
+				? (
 					<Layout {...props}>
 						<Component {...props} />
 					</Layout>
-				) : (
-					<Component {...props} />
 				)
-			}
-		/>
-	);
-};
+				: <Component {...props} />
+		}
+	/>
+);
 
-export default RouteWrapper;
+export default SecureRoute;

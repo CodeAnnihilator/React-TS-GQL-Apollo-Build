@@ -1,9 +1,9 @@
 module.exports = {
 	schema: [
 		{
-			'https://hasura.io/learn/graphql': {
+			'https://stage.webench.de:4000/graphql': {
 				headers: {
-					Authorization: 'Bearer ' + process.env.AUTH_TOKEN,
+					// Authorization: 'Bearer ' + process.env.AUTH_TOKEN,
 				},
 			},
 		},

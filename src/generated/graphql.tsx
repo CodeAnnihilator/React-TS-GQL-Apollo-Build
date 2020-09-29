@@ -9,544 +9,799 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  timestamptz: any;
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: any;
 };
 
-/** expression to compare columns of type Boolean. All fields are combined with logical 'AND'. */
-export type Boolean_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Boolean']>;
-  _gt?: Maybe<Scalars['Boolean']>;
-  _gte?: Maybe<Scalars['Boolean']>;
-  _in?: Maybe<Array<Scalars['Boolean']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Boolean']>;
-  _lte?: Maybe<Scalars['Boolean']>;
-  _neq?: Maybe<Scalars['Boolean']>;
-  _nin?: Maybe<Array<Scalars['Boolean']>>;
-};
-
-/** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
-export type Int_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Int']>;
-  _gt?: Maybe<Scalars['Int']>;
-  _gte?: Maybe<Scalars['Int']>;
-  _in?: Maybe<Array<Scalars['Int']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Int']>;
-  _lte?: Maybe<Scalars['Int']>;
-  _neq?: Maybe<Scalars['Int']>;
-  _nin?: Maybe<Array<Scalars['Int']>>;
-};
-
-/** expression to compare columns of type String. All fields are combined with logical 'AND'. */
-export type String_Comparison_Exp = {
-  _eq?: Maybe<Scalars['String']>;
-  _gt?: Maybe<Scalars['String']>;
-  _gte?: Maybe<Scalars['String']>;
-  _ilike?: Maybe<Scalars['String']>;
-  _in?: Maybe<Array<Scalars['String']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _like?: Maybe<Scalars['String']>;
-  _lt?: Maybe<Scalars['String']>;
-  _lte?: Maybe<Scalars['String']>;
-  _neq?: Maybe<Scalars['String']>;
-  _nilike?: Maybe<Scalars['String']>;
-  _nin?: Maybe<Array<Scalars['String']>>;
-  _nlike?: Maybe<Scalars['String']>;
-  _nsimilar?: Maybe<Scalars['String']>;
-  _similar?: Maybe<Scalars['String']>;
-};
-
-/** mutation root */
-export type Mutation_Root = {
-  __typename?: 'mutation_root';
-  /** delete data from the table: "todos" */
-  delete_todos?: Maybe<Todos_Mutation_Response>;
-  /** delete single row from the table: "todos" */
-  delete_todos_by_pk?: Maybe<Todos>;
-  /** insert data into the table: "todos" */
-  insert_todos?: Maybe<Todos_Mutation_Response>;
-  /** insert a single row into the table: "todos" */
-  insert_todos_one?: Maybe<Todos>;
-  /** update data of the table: "todos" */
-  update_todos?: Maybe<Todos_Mutation_Response>;
-  /** update single row of the table: "todos" */
-  update_todos_by_pk?: Maybe<Todos>;
-  /** update data of the table: "users" */
-  update_users?: Maybe<Users_Mutation_Response>;
-  /** update single row of the table: "users" */
-  update_users_by_pk?: Maybe<Users>;
+export type Query = {
+  __typename?: 'Query';
+  getPeindngUsersRegistration: Array<PendingUsersCompanies>;
+  getCountAnswers: CountAnswersData;
+  getCountries: Array<Countries>;
+  getCurrentUser: UserDetails;
+  getKpiValues: Array<KpiValues>;
+  getRegisteredCompanies: Array<RegisteredUsersCompanies>;
+  getSiteServicesApprovaled: SiteServiceApprovaledData;
+  getIndustries: Array<Industries>;
+  me: User;
+  getCompanyGroups: Array<ServiceGroup>;
+  getCompanyGroupServices: Array<CompanyGroupService>;
+  getService: Array<Service>;
+  getCompaniesToApproval: Array<CompaniesToApprovalData>;
+  getApprovalData: ApprovalData;
+  getPendingToApproval: Array<PendingToApprovalSiteManagerData>;
+  getAdminComment: AdminCommentData;
+  getUserSites: Array<Site>;
+  users: Array<User>;
+  user: User;
+  getUserData: UserDetails;
+  hasToken: Scalars['Boolean'];
+  getListOfLanguages: Array<ListOfLanguages>;
 };
 
 
-/** mutation root */
-export type Mutation_RootDelete_TodosArgs = {
-  where: Todos_Bool_Exp;
+export type QueryGetKpiValuesArgs = {
+  serviceName?: Maybe<Scalars['String']>;
 };
 
 
-/** mutation root */
-export type Mutation_RootDelete_Todos_By_PkArgs = {
-  id: Scalars['Int'];
+export type QueryGetRegisteredCompaniesArgs = {
+  params: ReqRegisteredUsersCompanies;
 };
 
 
-/** mutation root */
-export type Mutation_RootInsert_TodosArgs = {
-  objects: Array<Todos_Insert_Input>;
-  on_conflict?: Maybe<Todos_On_Conflict>;
+export type QueryGetSiteServicesApprovaledArgs = {
+  siteName: Scalars['String'];
 };
 
 
-/** mutation root */
-export type Mutation_RootInsert_Todos_OneArgs = {
-  object: Todos_Insert_Input;
-  on_conflict?: Maybe<Todos_On_Conflict>;
+export type QueryGetCompanyGroupServicesArgs = {
+  groupId: Scalars['Float'];
 };
 
 
-/** mutation root */
-export type Mutation_RootUpdate_TodosArgs = {
-  _set?: Maybe<Todos_Set_Input>;
-  where: Todos_Bool_Exp;
+export type QueryGetServiceArgs = {
+  params: ServiceData;
 };
 
 
-/** mutation root */
-export type Mutation_RootUpdate_Todos_By_PkArgs = {
-  _set?: Maybe<Todos_Set_Input>;
-  pk_columns: Todos_Pk_Columns_Input;
+export type QueryGetCompaniesToApprovalArgs = {
+  status: Scalars['String'];
 };
 
 
-/** mutation root */
-export type Mutation_RootUpdate_UsersArgs = {
-  _set?: Maybe<Users_Set_Input>;
-  where: Users_Bool_Exp;
+export type QueryGetApprovalDataArgs = {
+  sitePendingDataRequestId: Scalars['Float'];
 };
 
 
-/** mutation root */
-export type Mutation_RootUpdate_Users_By_PkArgs = {
-  _set?: Maybe<Users_Set_Input>;
-  pk_columns: Users_Pk_Columns_Input;
-};
-
-/** columns and relationships of "online_users" */
-export type Online_Users = {
-  __typename?: 'online_users';
-  id?: Maybe<Scalars['String']>;
-  last_seen?: Maybe<Scalars['timestamptz']>;
-  /** An object relationship */
-  user?: Maybe<Users>;
-};
-
-/** Boolean expression to filter rows from the table "online_users". All fields are combined with a logical 'AND'. */
-export type Online_Users_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Online_Users_Bool_Exp>>>;
-  _not?: Maybe<Online_Users_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Online_Users_Bool_Exp>>>;
-  id?: Maybe<String_Comparison_Exp>;
-  last_seen?: Maybe<Timestamptz_Comparison_Exp>;
-  user?: Maybe<Users_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "online_users" */
-export type Online_Users_Order_By = {
-  id?: Maybe<Order_By>;
-  last_seen?: Maybe<Order_By>;
-  user?: Maybe<Users_Order_By>;
-};
-
-/** select columns of table "online_users" */
-export enum Online_Users_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  LastSeen = 'last_seen'
-}
-
-/** column ordering options */
-export enum Order_By {
-  /** in the ascending order, nulls last */
-  Asc = 'asc',
-  /** in the ascending order, nulls first */
-  AscNullsFirst = 'asc_nulls_first',
-  /** in the ascending order, nulls last */
-  AscNullsLast = 'asc_nulls_last',
-  /** in the descending order, nulls first */
-  Desc = 'desc',
-  /** in the descending order, nulls first */
-  DescNullsFirst = 'desc_nulls_first',
-  /** in the descending order, nulls last */
-  DescNullsLast = 'desc_nulls_last'
-}
-
-/** query root */
-export type Query_Root = {
-  __typename?: 'query_root';
-  /** fetch data from the table: "online_users" */
-  online_users: Array<Online_Users>;
-  /** fetch data from the table: "todos" */
-  todos: Array<Todos>;
-  /** fetch data from the table: "todos" using primary key columns */
-  todos_by_pk?: Maybe<Todos>;
-  /** fetch data from the table: "users" */
-  users: Array<Users>;
-  /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+export type QueryGetAdminCommentArgs = {
+  siteGroupServiceId: Scalars['Float'];
 };
 
 
-/** query root */
-export type Query_RootOnline_UsersArgs = {
-  distinct_on?: Maybe<Array<Online_Users_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Online_Users_Order_By>>;
-  where?: Maybe<Online_Users_Bool_Exp>;
+export type QueryUsersArgs = {
+  roles?: Maybe<Array<UserRole>>;
 };
 
 
-/** query root */
-export type Query_RootTodosArgs = {
-  distinct_on?: Maybe<Array<Todos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Todos_Order_By>>;
-  where?: Maybe<Todos_Bool_Exp>;
+export type QueryUserArgs = {
+  id: Scalars['Float'];
 };
 
 
-/** query root */
-export type Query_RootTodos_By_PkArgs = {
-  id: Scalars['Int'];
+export type QueryGetUserDataArgs = {
+  userId: Scalars['Float'];
 };
 
 
-/** query root */
-export type Query_RootUsersArgs = {
-  distinct_on?: Maybe<Array<Users_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Users_Order_By>>;
-  where?: Maybe<Users_Bool_Exp>;
+export type QueryHasTokenArgs = {
+  token: Scalars['String'];
+};
+
+export type PendingUsersCompanies = {
+  __typename?: 'PendingUsersCompanies';
+  id: Scalars['Float'];
+  industryName: Scalars['String'];
+  companyName: Scalars['String'];
+  email: Scalars['String'];
+  createdAt: Scalars['DateTime'];
 };
 
 
-/** query root */
-export type Query_RootUsers_By_PkArgs = {
-  id: Scalars['String'];
+export type CountAnswersData = {
+  __typename?: 'CountAnswersData';
+  answered: Scalars['Float'];
+  total: Scalars['Float'];
+  errors: Scalars['Float'];
 };
 
-/** subscription root */
-export type Subscription_Root = {
-  __typename?: 'subscription_root';
-  /** fetch data from the table: "online_users" */
-  online_users: Array<Online_Users>;
-  /** fetch data from the table: "todos" */
-  todos: Array<Todos>;
-  /** fetch data from the table: "todos" using primary key columns */
-  todos_by_pk?: Maybe<Todos>;
-  /** fetch data from the table: "users" */
-  users: Array<Users>;
-  /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+export type Countries = {
+  __typename?: 'Countries';
+  name: Scalars['String'];
+  code: Scalars['String'];
 };
 
-
-/** subscription root */
-export type Subscription_RootOnline_UsersArgs = {
-  distinct_on?: Maybe<Array<Online_Users_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Online_Users_Order_By>>;
-  where?: Maybe<Online_Users_Bool_Exp>;
+export type UserDetails = {
+  __typename?: 'UserDetails';
+  user: User;
+  site: Site;
 };
 
-
-/** subscription root */
-export type Subscription_RootTodosArgs = {
-  distinct_on?: Maybe<Array<Todos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Todos_Order_By>>;
-  where?: Maybe<Todos_Bool_Exp>;
+export type User = {
+  __typename?: 'User';
+  id: Scalars['Float'];
+  fullName: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  language: Language;
+  company: Company;
+  role: Role;
+  email: Scalars['String'];
 };
 
-
-/** subscription root */
-export type Subscription_RootTodos_By_PkArgs = {
-  id: Scalars['Int'];
+export type Language = {
+  __typename?: 'Language';
+  code: Scalars['Float'];
+  name: Scalars['String'];
 };
 
-
-/** subscription root */
-export type Subscription_RootUsersArgs = {
-  distinct_on?: Maybe<Array<Users_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Users_Order_By>>;
-  where?: Maybe<Users_Bool_Exp>;
+export type Company = {
+  __typename?: 'Company';
+  id: Scalars['Float'];
+  siteName?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  industry?: Maybe<IndustryTranslation>;
 };
 
-
-/** subscription root */
-export type Subscription_RootUsers_By_PkArgs = {
-  id: Scalars['String'];
+export type IndustryTranslation = {
+  __typename?: 'IndustryTranslation';
+  industryId: Scalars['Float'];
+  name: Scalars['String'];
 };
 
-
-/** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
-export type Timestamptz_Comparison_Exp = {
-  _eq?: Maybe<Scalars['timestamptz']>;
-  _gt?: Maybe<Scalars['timestamptz']>;
-  _gte?: Maybe<Scalars['timestamptz']>;
-  _in?: Maybe<Array<Scalars['timestamptz']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['timestamptz']>;
-  _lte?: Maybe<Scalars['timestamptz']>;
-  _neq?: Maybe<Scalars['timestamptz']>;
-  _nin?: Maybe<Array<Scalars['timestamptz']>>;
+export type Role = {
+  __typename?: 'Role';
+  id: Scalars['Float'];
+  label: Scalars['String'];
 };
 
-/** columns and relationships of "todos" */
-export type Todos = {
-  __typename?: 'todos';
-  created_at: Scalars['timestamptz'];
-  id: Scalars['Int'];
-  is_completed: Scalars['Boolean'];
-  is_public: Scalars['Boolean'];
-  title: Scalars['String'];
-  /** An object relationship */
-  user: Users;
-  user_id: Scalars['String'];
+export type Site = {
+  __typename?: 'Site';
+  id: Scalars['Float'];
+  name: Scalars['String'];
+  employeesNumber?: Maybe<Scalars['Float']>;
+  country?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  postalCode?: Maybe<Scalars['String']>;
 };
 
-/** input type for inserting array relation for remote table "todos" */
-export type Todos_Arr_Rel_Insert_Input = {
-  data: Array<Todos_Insert_Input>;
-  on_conflict?: Maybe<Todos_On_Conflict>;
+export type KpiValues = {
+  __typename?: 'KpiValues';
+  math: Array<MathDetails>;
+  groupServiceDetails: GroupServiceDetails;
+  data: Array<DataDetails>;
 };
 
-/** Boolean expression to filter rows from the table "todos". All fields are combined with a logical 'AND'. */
-export type Todos_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Todos_Bool_Exp>>>;
-  _not?: Maybe<Todos_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Todos_Bool_Exp>>>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  is_completed?: Maybe<Boolean_Comparison_Exp>;
-  is_public?: Maybe<Boolean_Comparison_Exp>;
-  title?: Maybe<String_Comparison_Exp>;
-  user?: Maybe<Users_Bool_Exp>;
-  user_id?: Maybe<String_Comparison_Exp>;
+export type MathDetails = {
+  __typename?: 'MathDetails';
+  min?: Maybe<Scalars['Float']>;
+  max?: Maybe<Scalars['Float']>;
+  avg?: Maybe<Scalars['Float']>;
+  median?: Maybe<Scalars['Float']>;
+  name?: Maybe<Scalars['String']>;
 };
 
-/** unique or primary key constraints on table "todos" */
-export enum Todos_Constraint {
-  /** unique or primary key constraint */
-  TodosPkey = 'todos_pkey'
-}
-
-/** input type for inserting data into table "todos" */
-export type Todos_Insert_Input = {
-  is_public?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
+export type GroupServiceDetails = {
+  __typename?: 'GroupServiceDetails';
+  id: Scalars['Float'];
+  service: ServiceDetails;
+  group: Group;
+  numerator: NumeratorDetails;
+  counter: CounterDetails;
 };
 
-/** response of any mutation on the table "todos" */
-export type Todos_Mutation_Response = {
-  __typename?: 'todos_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Todos>;
+export type ServiceDetails = {
+  __typename?: 'ServiceDetails';
+  id: Scalars['Float'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
 };
 
-/** input type for inserting object relation for remote table "todos" */
-export type Todos_Obj_Rel_Insert_Input = {
-  data: Todos_Insert_Input;
-  on_conflict?: Maybe<Todos_On_Conflict>;
+export type Group = {
+  __typename?: 'Group';
+  id: Scalars['Float'];
+  name: Scalars['String'];
 };
 
-/** on conflict condition type for table "todos" */
-export type Todos_On_Conflict = {
-  constraint: Todos_Constraint;
-  update_columns: Array<Todos_Update_Column>;
-  where?: Maybe<Todos_Bool_Exp>;
+export type NumeratorDetails = {
+  __typename?: 'NumeratorDetails';
+  numeratorId: Scalars['Float'];
+  name: Scalars['String'];
 };
 
-/** ordering options when selecting data from "todos" */
-export type Todos_Order_By = {
-  created_at?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  is_completed?: Maybe<Order_By>;
-  is_public?: Maybe<Order_By>;
-  title?: Maybe<Order_By>;
-  user?: Maybe<Users_Order_By>;
-  user_id?: Maybe<Order_By>;
+export type CounterDetails = {
+  __typename?: 'CounterDetails';
+  counterId: Scalars['Float'];
+  name: Scalars['String'];
 };
 
-/** primary key columns input for table: "todos" */
-export type Todos_Pk_Columns_Input = {
-  id: Scalars['Int'];
+export type DataDetails = {
+  __typename?: 'DataDetails';
+  site: Site;
+  isSelectedSiteCurrentUser: Scalars['Boolean'];
+  kpiDetails: KpiValue;
+  degreeofOutsourcingDetails: DegreeofOutsourcingValue;
 };
 
-/** select columns of table "todos" */
-export enum Todos_Select_Column {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  IsCompleted = 'is_completed',
-  /** column name */
-  IsPublic = 'is_public',
-  /** column name */
-  Title = 'title',
-  /** column name */
-  UserId = 'user_id'
-}
-
-/** input type for updating data in table "todos" */
-export type Todos_Set_Input = {
-  is_completed?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
+export type KpiValue = {
+  __typename?: 'KpiValue';
+  id: Scalars['Float'];
+  value: Scalars['Float'];
 };
 
-/** update columns of table "todos" */
-export enum Todos_Update_Column {
-  /** column name */
-  IsCompleted = 'is_completed',
-  /** column name */
-  Title = 'title'
-}
+export type DegreeofOutsourcingValue = {
+  __typename?: 'DegreeofOutsourcingValue';
+  id: Scalars['Float'];
+  value: Scalars['Float'];
+};
 
-/** columns and relationships of "users" */
-export type Users = {
-  __typename?: 'users';
+export type ReqRegisteredUsersCompanies = {
+  offset?: Maybe<Scalars['Float']>;
+  limit?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+};
+
+export type RegisteredUsersCompanies = {
+  __typename?: 'RegisteredUsersCompanies';
+  id: Scalars['Float'];
+  industryName: Scalars['String'];
+  companyName: Scalars['String'];
+  postalCode: Scalars['String'];
+  siteName: Scalars['String'];
+  email: Scalars['String'];
+  employeesNumber: Scalars['Float'];
+  userId: Scalars['Float'];
+};
+
+export type SiteServiceApprovaledData = {
+  __typename?: 'SiteServiceApprovaledData';
+  userId?: Maybe<Scalars['Float']>;
+  sites?: Maybe<Array<Site>>;
+  servicesApprovaledData?: Maybe<Array<ServicesApprovaledData>>;
+};
+
+export type ServicesApprovaledData = {
+  __typename?: 'ServicesApprovaledData';
+  serviceGroupDetails: ServiceGroupDetails;
+  data: Array<CalculatedData>;
+};
+
+export type ServiceGroupDetails = {
+  __typename?: 'ServiceGroupDetails';
+  id: Scalars['Float'];
+  sitePendingDataRequestId: Scalars['Float'];
+  siteGroupServiceId: Scalars['Float'];
+  serviceName: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  groupName: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+};
+
+export type CalculatedData = {
+  __typename?: 'CalculatedData';
+  id?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  max?: Maybe<Scalars['Float']>;
+  avg?: Maybe<Scalars['Float']>;
+  value?: Maybe<Scalars['Float']>;
+  label: Scalars['String'];
+};
+
+export type Industries = {
+  __typename?: 'Industries';
   id: Scalars['String'];
   name: Scalars['String'];
-  /** An array relationship */
-  todos: Array<Todos>;
 };
 
-
-/** columns and relationships of "users" */
-export type UsersTodosArgs = {
-  distinct_on?: Maybe<Array<Todos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Todos_Order_By>>;
-  where?: Maybe<Todos_Bool_Exp>;
+export type ServiceGroup = {
+  __typename?: 'ServiceGroup';
+  groupId: Scalars['Float'];
+  serviceGroupName: Scalars['String'];
+  servicesCount: Scalars['Float'];
+  hasError: Scalars['Boolean'];
 };
 
-/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
-export type Users_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
-  _not?: Maybe<Users_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
-  id?: Maybe<String_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  todos?: Maybe<Todos_Bool_Exp>;
+export type CompanyGroupService = {
+  __typename?: 'CompanyGroupService';
+  serviceId: Scalars['Float'];
+  groupId?: Maybe<Scalars['Float']>;
+  serviceName: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  status: ExcelDataStatus;
+  label: Scalars['String'];
 };
 
-/** unique or primary key constraints on table "users" */
-export enum Users_Constraint {
-  /** unique or primary key constraint */
-  UsersPkey = 'users_pkey'
+export enum ExcelDataStatus {
+  Approval = 'approval',
+  WasApproved = 'wasApproved',
+  Error = 'error',
+  NotSubmittedYet = 'notSubmittedYet'
 }
 
-/** response of any mutation on the table "users" */
-export type Users_Mutation_Response = {
-  __typename?: 'users_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Users>;
+export type ServiceData = {
+  groupId: Scalars['Float'];
+  serviceId: Scalars['Float'];
 };
 
-/** on conflict condition type for table "users" */
-export type Users_On_Conflict = {
-  constraint: Users_Constraint;
-  update_columns: Array<Users_Update_Column>;
-  where?: Maybe<Users_Bool_Exp>;
+export type Service = {
+  __typename?: 'Service';
+  id: Scalars['Float'];
+  rawFieldId: Scalars['Float'];
+  groupId: Scalars['Float'];
+  serviceId: Scalars['Float'];
+  groupServiceId: Scalars['Float'];
+  value?: Maybe<Scalars['String']>;
+  label: Scalars['String'];
+  comment?: Maybe<Scalars['String']>;
 };
 
-/** ordering options when selecting data from "users" */
-export type Users_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
+export type CompaniesToApprovalData = {
+  __typename?: 'CompaniesToApprovalData';
+  sitePendingDataRequestId: Scalars['Float'];
+  companyName: Scalars['String'];
+  industryName: Scalars['String'];
+  groupName: Scalars['String'];
+  serviceName: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  email: Scalars['String'];
+  userId: Scalars['Float'];
 };
 
-/** primary key columns input for table: "users" */
-export type Users_Pk_Columns_Input = {
-  id: Scalars['String'];
+export type ApprovalData = {
+  __typename?: 'ApprovalData';
+  sitePendingDataRequestId?: Maybe<Scalars['Float']>;
+  siteGroupServiceId?: Maybe<Scalars['Float']>;
+  serviceName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  groupName?: Maybe<Scalars['String']>;
+  remarks?: Maybe<Scalars['String']>;
+  data?: Maybe<Array<CalculatedData>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-/** select columns of table "users" */
-export enum Users_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
+export type PendingToApprovalSiteManagerData = {
+  __typename?: 'PendingToApprovalSiteManagerData';
+  siteGroupServiceId: Scalars['Float'];
+  groupName: Scalars['String'];
+  serviceId: Scalars['Float'];
+  groupId: Scalars['Float'];
+  serviceName: Scalars['String'];
+  submissionDate: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type AdminCommentData = {
+  __typename?: 'AdminCommentData';
+  id: Scalars['Float'];
+  comment?: Maybe<Scalars['String']>;
+};
+
+export enum UserRole {
+  SuperAdmin = 'superAdmin',
+  Producer = 'producer'
 }
 
-/** input type for updating data in table "users" */
-export type Users_Set_Input = {
-  last_seen?: Maybe<Scalars['timestamptz']>;
+export type ListOfLanguages = {
+  __typename?: 'ListOfLanguages';
+  code: Scalars['Float'];
+  name: Scalars['String'];
 };
 
-/** update columns of table "users" */
-export enum Users_Update_Column {
-  /** column name */
-  LastSeen = 'last_seen'
+export type Mutation = {
+  __typename?: 'Mutation';
+  loginUser: AuthResult;
+  changeStatusCompany: RegisteredUsersCompanies;
+  uploadExcel: Array<Array<UploadedData>>;
+  requestToRegister: Scalars['Boolean'];
+  changeStatusApprovalData: CompaniesToApprovalData;
+  updateAdminComment: AdminCommentData;
+  switchSite: SiteDetailsData;
+  getNewAccessToken: Token;
+  updateServiceValue: Scalars['Boolean'];
+  registerUser: AuthResult;
+  addCompany: Scalars['Boolean'];
+  forgotPassword: Scalars['Boolean'];
+  addSiteDetails: SiteDetailsData;
+  updatePassword: Scalars['Boolean'];
+  changeUserAndCompanyData: Scalars['Boolean'];
+  changePassword: Scalars['Boolean'];
+  logOut: Scalars['Boolean'];
+  changeUserLanguage: User;
+  isOldPassword: Scalars['Boolean'];
+};
+
+
+export type MutationLoginUserArgs = {
+  params: LoginUserInput;
+};
+
+
+export type MutationChangeStatusCompanyArgs = {
+  params: ReqChangeStatusCompany;
+};
+
+
+export type MutationUploadExcelArgs = {
+  file: Scalars['String'];
+};
+
+
+export type MutationRequestToRegisterArgs = {
+  params: RandomUserParams;
+};
+
+
+export type MutationChangeStatusApprovalDataArgs = {
+  params: ReqChangeStatusApprovalData;
+};
+
+
+export type MutationUpdateAdminCommentArgs = {
+  params: UpdateAdminCommentData;
+};
+
+
+export type MutationSwitchSiteArgs = {
+  siteId: Scalars['Float'];
+};
+
+
+export type MutationGetNewAccessTokenArgs = {
+  params: Scalars['String'];
+};
+
+
+export type MutationUpdateServiceValueArgs = {
+  params: Array<Array<ReqServices>>;
+};
+
+
+export type MutationRegisterUserArgs = {
+  params: RegisterUserParams;
+};
+
+
+export type MutationAddCompanyArgs = {
+  params: AddCompanyData;
+};
+
+
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationAddSiteDetailsArgs = {
+  params: AddSiteData;
+};
+
+
+export type MutationUpdatePasswordArgs = {
+  params: UpdatePassword;
+};
+
+
+export type MutationChangeUserAndCompanyDataArgs = {
+  params: ReqUserAndCompanyData;
+};
+
+
+export type MutationChangePasswordArgs = {
+  password: Scalars['String'];
+};
+
+
+export type MutationChangeUserLanguageArgs = {
+  code: Scalars['Float'];
+};
+
+
+export type MutationIsOldPasswordArgs = {
+  password: Scalars['String'];
+};
+
+export type LoginUserInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type AuthResult = {
+  __typename?: 'AuthResult';
+  token: Scalars['String'];
+  isInitialData: Scalars['Boolean'];
+};
+
+export type ReqChangeStatusCompany = {
+  userId: Scalars['Float'];
+  status: Scalars['String'];
+};
+
+export type UploadedData = {
+  __typename?: 'UploadedData';
+  id: Scalars['Float'];
+  rawFieldId: Scalars['Float'];
+  groupId: Scalars['Float'];
+  groupServiceId: Scalars['Float'];
+  serviceId: Scalars['Float'];
+  value?: Maybe<Scalars['String']>;
+  label: Scalars['String'];
+  comment?: Maybe<Scalars['String']>;
+};
+
+export type RandomUserParams = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  userEmail: Scalars['String'];
+  companyName: Scalars['String'];
+};
+
+export type ReqChangeStatusApprovalData = {
+  reqChangeStatusApprovalData: Scalars['Float'];
+  status: Scalars['String'];
+};
+
+export type UpdateAdminCommentData = {
+  siteGroupServiceId: Scalars['Float'];
+  text: Scalars['String'];
+};
+
+export type SiteDetailsData = {
+  __typename?: 'SiteDetailsData';
+  site: Site;
+  groups: Array<ServiceGroup>;
+};
+
+export type Token = {
+  __typename?: 'Token';
+  token: Scalars['String'];
+};
+
+export type ReqServices = {
+  id: Scalars['Float'];
+  groupId: Scalars['Float'];
+  serviceId: Scalars['Float'];
+  rawFieldId: Scalars['Float'];
+  groupServiceId: Scalars['Float'];
+  value?: Maybe<Scalars['String']>;
+  label: Scalars['String'];
+  comment?: Maybe<Scalars['String']>;
+};
+
+export type RegisterUserParams = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  language: UserLanguage;
+  token: Scalars['String'];
+};
+
+export enum UserLanguage {
+  En = 'en',
+  Ge = 'ge'
 }
 
-export type GetMyTodosQueryVariables = Exact<{ [key: string]: never; }>;
+export type AddCompanyData = {
+  email: Scalars['String'];
+  industryName: Scalars['String'];
+  companyName: Scalars['String'];
+  language: UserLanguage;
+};
+
+export type AddSiteData = {
+  employeesNumber: Scalars['Float'];
+  country: Scalars['String'];
+  city: Scalars['String'];
+  postalCode: Scalars['String'];
+  siteName: Scalars['String'];
+};
+
+export type UpdatePassword = {
+  token: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type ReqUserAndCompanyData = {
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
+  employeesNumber?: Maybe<Scalars['Float']>;
+  country?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  postalCode?: Maybe<Scalars['String']>;
+  siteName?: Maybe<Scalars['String']>;
+};
+
+export type RegistrationStatus = {
+  __typename?: 'RegistrationStatus';
+  id: Scalars['Float'];
+  name: Scalars['String'];
+};
+
+export type ReservedDomain = {
+  __typename?: 'ReservedDomain';
+  id: Scalars['Float'];
+  name: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+};
+
+export type UserRegistrationStatus = {
+  __typename?: 'UserRegistrationStatus';
+  user: User;
+  registrationStatus: RegistrationStatus;
+  reservedDomain: ReservedDomain;
+  updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  token: Scalars['String'];
+};
+
+export type UpdateServiceValue = {
+  __typename?: 'UpdateServiceValue';
+  siteGroupServiceId: Scalars['Float'];
+  isSubmit: Scalars['String'];
+};
+
+export type RestorePasswordInput = {
+  email: Scalars['String'];
+};
+
+export type RestorePasswordConfirmInput = {
+  token: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type LoginUserMutationVariables = Exact<{
+  params: LoginUserInput;
+}>;
 
 
-export type GetMyTodosQuery = (
-  { __typename?: 'query_root' }
-  & { todos: Array<(
-    { __typename?: 'todos' }
-    & Pick<Todos, 'id' | 'title' | 'is_completed'>
-  )> }
+export type LoginUserMutation = (
+  { __typename?: 'Mutation' }
+  & { loginUser: (
+    { __typename?: 'AuthResult' }
+    & Pick<AuthResult, 'token' | 'isInitialData'>
+  ) }
+);
+
+export type GetCurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCurrentUserQuery = (
+  { __typename?: 'Query' }
+  & { getCurrentUser: (
+    { __typename?: 'UserDetails' }
+    & { user: (
+      { __typename?: 'User' }
+      & Pick<User, 'id'>
+    ) }
+  ) }
+);
+
+export type GetCurrentUserLocalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCurrentUserLocalQuery = (
+  { __typename?: 'Query' }
+  & { getCurrentUser: (
+    { __typename?: 'UserDetails' }
+    & { user: (
+      { __typename?: 'User' }
+      & Pick<User, 'id'>
+    ) }
+  ) }
 );
 
 
-export const GetMyTodosDocument = gql`
-    query getMyTodos {
-  todos {
-    id
-    title
-    is_completed
+export const LoginUserDocument = gql`
+    mutation loginUser($params: LoginUserInput!) {
+  loginUser(params: $params) {
+    token
+    isInitialData
+  }
+}
+    `;
+export type LoginUserMutationFn = Apollo.MutationFunction<LoginUserMutation, LoginUserMutationVariables>;
+
+/**
+ * __useLoginUserMutation__
+ *
+ * To run a mutation, you first call `useLoginUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginUserMutation, { data, loading, error }] = useLoginUserMutation({
+ *   variables: {
+ *      params: // value for 'params'
+ *   },
+ * });
+ */
+export function useLoginUserMutation(baseOptions?: Apollo.MutationHookOptions<LoginUserMutation, LoginUserMutationVariables>) {
+        return Apollo.useMutation<LoginUserMutation, LoginUserMutationVariables>(LoginUserDocument, baseOptions);
+      }
+export type LoginUserMutationHookResult = ReturnType<typeof useLoginUserMutation>;
+export type LoginUserMutationResult = Apollo.MutationResult<LoginUserMutation>;
+export type LoginUserMutationOptions = Apollo.BaseMutationOptions<LoginUserMutation, LoginUserMutationVariables>;
+export const GetCurrentUserDocument = gql`
+    query getCurrentUser {
+  getCurrentUser {
+    user {
+      id
+    }
   }
 }
     `;
 
 /**
- * __useGetMyTodosQuery__
+ * __useGetCurrentUserQuery__
  *
- * To run a query within a React component, call `useGetMyTodosQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMyTodosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetCurrentUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCurrentUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetMyTodosQuery({
+ * const { data, loading, error } = useGetCurrentUserQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetMyTodosQuery(baseOptions?: Apollo.QueryHookOptions<GetMyTodosQuery, GetMyTodosQueryVariables>) {
-        return Apollo.useQuery<GetMyTodosQuery, GetMyTodosQueryVariables>(GetMyTodosDocument, baseOptions);
+export function useGetCurrentUserQuery(baseOptions?: Apollo.QueryHookOptions<GetCurrentUserQuery, GetCurrentUserQueryVariables>) {
+        return Apollo.useQuery<GetCurrentUserQuery, GetCurrentUserQueryVariables>(GetCurrentUserDocument, baseOptions);
       }
-export function useGetMyTodosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMyTodosQuery, GetMyTodosQueryVariables>) {
-          return Apollo.useLazyQuery<GetMyTodosQuery, GetMyTodosQueryVariables>(GetMyTodosDocument, baseOptions);
+export function useGetCurrentUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCurrentUserQuery, GetCurrentUserQueryVariables>) {
+          return Apollo.useLazyQuery<GetCurrentUserQuery, GetCurrentUserQueryVariables>(GetCurrentUserDocument, baseOptions);
         }
-export type GetMyTodosQueryHookResult = ReturnType<typeof useGetMyTodosQuery>;
-export type GetMyTodosLazyQueryHookResult = ReturnType<typeof useGetMyTodosLazyQuery>;
-export type GetMyTodosQueryResult = Apollo.QueryResult<GetMyTodosQuery, GetMyTodosQueryVariables>;
+export type GetCurrentUserQueryHookResult = ReturnType<typeof useGetCurrentUserQuery>;
+export type GetCurrentUserLazyQueryHookResult = ReturnType<typeof useGetCurrentUserLazyQuery>;
+export type GetCurrentUserQueryResult = Apollo.QueryResult<GetCurrentUserQuery, GetCurrentUserQueryVariables>;
+export const GetCurrentUserLocalDocument = gql`
+    query getCurrentUserLocal {
+  getCurrentUser @client {
+    user {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCurrentUserLocalQuery__
+ *
+ * To run a query within a React component, call `useGetCurrentUserLocalQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCurrentUserLocalQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCurrentUserLocalQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCurrentUserLocalQuery(baseOptions?: Apollo.QueryHookOptions<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>) {
+        return Apollo.useQuery<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>(GetCurrentUserLocalDocument, baseOptions);
+      }
+export function useGetCurrentUserLocalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>) {
+          return Apollo.useLazyQuery<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>(GetCurrentUserLocalDocument, baseOptions);
+        }
+export type GetCurrentUserLocalQueryHookResult = ReturnType<typeof useGetCurrentUserLocalQuery>;
+export type GetCurrentUserLocalLazyQueryHookResult = ReturnType<typeof useGetCurrentUserLocalLazyQuery>;
+export type GetCurrentUserLocalQueryResult = Apollo.QueryResult<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>;
