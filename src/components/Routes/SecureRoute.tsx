@@ -1,7 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-
-import { useGetCurrentUserLocalQuery } from 'generated/graphql';
+import { Route } from 'react-router-dom';
 
 const SecureRoute = ({
 	component: Component,

@@ -1,0 +1,34 @@
+.container {
+	width: 220px;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-right: 1px solid #dedede;
+}
+
+.el {
+    display: flex;
+    align-items: center;
+    line-height: 60px;
+    text-decoration: none;
+	padding: 0 20px;
+	color: #3c3c3c;
+	text-transform: capitalize;
+	font-size: 0.9em;
+}
+
+.active {
+    background-color: #f5f6f9;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    margin: 0 15px;
+}
+
+
+.logo {
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 1px;
+}

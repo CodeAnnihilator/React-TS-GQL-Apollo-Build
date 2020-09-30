@@ -7,7 +7,7 @@ export default (loginUserMutation: LoginUserMutationFn, history: History) => asy
 	try {
 		const res = await loginUserMutation(insertParams(data) as Object);
 		localStorage.setItem('token', res.data?.loginUser.token as string);
-		history.push('/dashboard');
+		history.push('/');
 	} catch (error) {
 		console.log({error});
 	}

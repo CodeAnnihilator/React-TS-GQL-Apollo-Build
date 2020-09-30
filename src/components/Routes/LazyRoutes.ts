@@ -1,10 +1,8 @@
 import { lazy as lazyRoute } from 'react';
 
 const lazy = {
-	Home: lazyRoute(() => import('modules/dummyModules/Home')),
 	Login: lazyRoute(() => import('modules/Auth/Login')),
-	About: lazyRoute(() => import('modules/dummyModules/About')),
-	Users: lazyRoute(() => import('modules/dummyModules/Users')),
-	Dashboard: lazyRoute(() => import('modules/Dashboard'))
+	Admin: lazyRoute(() => import('modules/Admin')),
+	Producer: lazyRoute(() => import('modules/Producer')),
 }
 export default lazy;

@@ -2,15 +2,21 @@
 	display: flex;
     flex-direction: column;
     align-items: center;
-	margin: 20px;
+	margin: 30px;
 	animation: transitioner 2s ease-in-out alternate 1;
 }
 
 .lanesContainer {
 	display: flex;
-    height: 48px;
-    width: 48px;
-    align-items: flex-end;
+	align-items: flex-end;
+	&_auth {
+		height: 48px;
+		width: 48px;
+	}
+	&_dash {
+		height: 38px;
+		width: 38px;	
+	}
 };
 
 .lane {
@@ -53,19 +59,33 @@
 }
 
 .headerText {
-	color: #e4eefb;
-    margin-top: 5px;
-    font-size: 1.5em;
+	&_auth {
+		color: #e4eefb;
+		margin-top: 5px;
+		font-size: 1.5em;
+	}
+	&_dash {
+		color: #3c3c3c;
+		font-size: 1.2em;
+		line-height: 20px;
+		margin-top: 10px;
+	}
 }
 
 .underlineText {
 	text-transform: uppercase;
-    font-size: 0.7em;
-	color: #abb7c7;
 	opacity: 0;
 	animation: transitioner 1s ease-in-out alternate 1;
 	animation-delay: 1s;
 	animation-fill-mode: forwards;
+	&_auth {
+		font-size: 0.7em;
+		color: #abb7c7;
+	}
+	&_dash {
+		font-size: 0.6em;
+		color: #797979;
+	}
 }
 
 @keyframes transitioner {

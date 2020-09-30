@@ -684,21 +684,24 @@ export type GetCurrentUserQuery = (
     { __typename?: 'UserDetails' }
     & { user: (
       { __typename?: 'User' }
-      & Pick<User, 'id'>
-    ) }
-  ) }
-);
-
-export type GetCurrentUserLocalQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetCurrentUserLocalQuery = (
-  { __typename?: 'Query' }
-  & { getCurrentUser: (
-    { __typename?: 'UserDetails' }
-    & { user: (
-      { __typename?: 'User' }
-      & Pick<User, 'id'>
+      & Pick<User, 'id' | 'firstName' | 'lastName' | 'email'>
+      & { role: (
+        { __typename?: 'Role' }
+        & Pick<Role, 'id' | 'label'>
+      ), company: (
+        { __typename?: 'Company' }
+        & Pick<Company, 'id' | 'name'>
+        & { industry?: Maybe<(
+          { __typename?: 'IndustryTranslation' }
+          & Pick<IndustryTranslation, 'name'>
+        )> }
+      ), language: (
+        { __typename?: 'Language' }
+        & Pick<Language, 'code' | 'name'>
+      ) }
+    ), site: (
+      { __typename?: 'Site' }
+      & Pick<Site, 'id' | 'name' | 'employeesNumber' | 'country' | 'city' | 'postalCode'>
     ) }
   ) }
 );
@@ -742,6 +745,33 @@ export const GetCurrentUserDocument = gql`
   getCurrentUser {
     user {
       id
+      firstName
+      lastName
+      email
+      role {
+        id
+        label
+      }
+      email
+      company {
+        id
+        name
+        industry {
+          name
+        }
+      }
+      language {
+        code
+        name
+      }
+    }
+    site {
+      id
+      name
+      employeesNumber
+      country
+      city
+      postalCode
     }
   }
 }
@@ -771,37 +801,3 @@ export function useGetCurrentUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type GetCurrentUserQueryHookResult = ReturnType<typeof useGetCurrentUserQuery>;
 export type GetCurrentUserLazyQueryHookResult = ReturnType<typeof useGetCurrentUserLazyQuery>;
 export type GetCurrentUserQueryResult = Apollo.QueryResult<GetCurrentUserQuery, GetCurrentUserQueryVariables>;
-export const GetCurrentUserLocalDocument = gql`
-    query getCurrentUserLocal {
-  getCurrentUser @client {
-    user {
-      id
-    }
-  }
-}
-    `;
-
-/**
- * __useGetCurrentUserLocalQuery__
- *
- * To run a query within a React component, call `useGetCurrentUserLocalQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCurrentUserLocalQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetCurrentUserLocalQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetCurrentUserLocalQuery(baseOptions?: Apollo.QueryHookOptions<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>) {
-        return Apollo.useQuery<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>(GetCurrentUserLocalDocument, baseOptions);
-      }
-export function useGetCurrentUserLocalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>) {
-          return Apollo.useLazyQuery<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>(GetCurrentUserLocalDocument, baseOptions);
-        }
-export type GetCurrentUserLocalQueryHookResult = ReturnType<typeof useGetCurrentUserLocalQuery>;
-export type GetCurrentUserLocalLazyQueryHookResult = ReturnType<typeof useGetCurrentUserLocalLazyQuery>;
-export type GetCurrentUserLocalQueryResult = Apollo.QueryResult<GetCurrentUserLocalQuery, GetCurrentUserLocalQueryVariables>;

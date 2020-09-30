@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
 const RedirectHandler = () => {
-
-	const [state, setState] = useState({ isAuthenticated: null });
 
 	const authRoutes = ['/login', '/register'];
 	const token = localStorage.getItem('token');

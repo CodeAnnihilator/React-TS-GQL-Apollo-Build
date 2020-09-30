@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Redirect, useLocation } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
 
 import { useGetCurrentUserQuery } from 'generated/graphql';
 
 import AuthLayout from 'layouts/AuthLayout';
+
+import RoundLinesSpinner from 'components/Loaders/RoundLinesSpinner';
 
 import SecureRoute from './SecureRoute';
 import RedirectHandler from './RedirectHandler';
@@ -13,16 +15,18 @@ export default function Routes() {
 
 	const {data, loading, error} = useGetCurrentUserQuery();
 
-	if (loading) return <div>loading...</div>
+	if (loading) return <RoundLinesSpinner />
+
+	const user = data?.getCurrentUser.user;
+	const isAdmin = user?.role.id === 1;
 
 	return (
 		<BrowserRouter>
-			<Suspense fallback={<div>loading component...</div>}>
+			{ error && <Redirect to='/login' /> }
+			<Suspense fallback={<RoundLinesSpinner />}>
 				<Switch>
 					<SecureRoute exact path='/login' component={lazy.Login} layout={AuthLayout} />
-					<SecureRoute path='/register' component={lazy.Users} layout={AuthLayout} />
-					<SecureRoute path='/dashboard' component={lazy.Dashboard} />
-					<Redirect to='/dashboard' />
+					<Route path='/' component={isAdmin ? lazy.Admin : lazy.Producer} />
 				</Switch>
 			</Suspense>
 			<RedirectHandler />
