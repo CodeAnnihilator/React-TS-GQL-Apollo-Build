@@ -12,24 +12,37 @@ import RedirectHandler from './RedirectHandler';
 import lazy from './LazyRoutes';
 
 export default function Routes() {
+    const { data, loading, error } = useGetCurrentUserQuery();
 
-	const {data, loading, error} = useGetCurrentUserQuery();
+    if (loading) return <RoundLinesSpinner />;
 
-	if (loading) return <RoundLinesSpinner />
+    const user = data?.getCurrentUser.user;
+    const isAdmin = user?.role.id === 1;
 
-	const user = data?.getCurrentUser.user;
-	const isAdmin = user?.role.id === 1;
-
-	return (
-		<BrowserRouter>
-			{ error && <Redirect to='/login' /> }
-			<Suspense fallback={<RoundLinesSpinner />}>
-				<Switch>
-					<SecureRoute exact path='/login' component={lazy.Login} layout={AuthLayout} />
-					<Route path='/' component={isAdmin ? lazy.Admin : lazy.Producer} />
-				</Switch>
-			</Suspense>
-			<RedirectHandler />
-		</BrowserRouter>
-	);
+    return (
+        <BrowserRouter>
+            {error && <Redirect to="/login" />}
+            <Suspense fallback={<RoundLinesSpinner />}>
+                <Switch>
+                    <SecureRoute
+                        exact
+                        path="/login"
+                        component={lazy.Login}
+                        layout={AuthLayout}
+                    />
+                    <SecureRoute
+                        exact
+                        path="/register"
+                        component={lazy.Register}
+                        layout={AuthLayout}
+                    />
+                    <Route
+                        path="/"
+                        component={isAdmin ? lazy.Admin : lazy.Producer}
+                    />
+                </Switch>
+            </Suspense>
+            <RedirectHandler />
+        </BrowserRouter>
+    );
 }

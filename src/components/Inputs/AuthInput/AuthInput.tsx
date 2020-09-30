@@ -12,6 +12,7 @@ interface IAuthInput {
 	required?: boolean;
 	type: string;
 	onBlur: any;
+	autoComplete?: string
 }
 
 const Input = ({
@@ -23,6 +24,7 @@ const Input = ({
 	onChange, 
 	error,
 	required,
+	autoComplete
 }: IAuthInput) => {
 
 	const requiredLabel = required ? '*' : '';
@@ -41,6 +43,7 @@ const Input = ({
 				className={styles.input}
 				placeholder={placeholder}
 				value={value}
+				autoComplete={autoComplete}
 			/>
 		</div>
 	);
