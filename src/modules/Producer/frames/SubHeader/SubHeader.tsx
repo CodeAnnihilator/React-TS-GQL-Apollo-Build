@@ -7,9 +7,15 @@ import styles from './subHeader.module.scss';
 
 const SubHeader = () => {
     const location = useLocation();
+    const services = 'services'
     let parts = location.pathname.split('/');
-    const place = parts[parts.length - 1];
+    let place = parts[parts.length - 1];
+    if (parts.length === 3 && !isNaN(parseInt(place))) {
+        parts.push(services)
+        place = services
+    }
     parts = parts.slice(1, parts.length - 1);
+
     return (
         <div className={styles.subHeader}>
             <div className={styles.main}>

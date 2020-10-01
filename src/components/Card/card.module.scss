@@ -1,5 +1,5 @@
 .container {
-	display: flex;
+    display: flex;
     width: 23%;
     box-sizing: border-box;
     flex-direction: column;
@@ -8,8 +8,18 @@
     padding: 1%;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.07);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.07);
     border: 1px solid #fff;
+
+    @media only screen and (max-width: 1024px) {
+        width: 31%;
+    }
+    @media only screen and (max-width: 967px) {
+        width: 47%;
+    }
+    @media only screen and (max-width: 768px) {
+        width: 95%;
+    }
 }
 
 .title {
@@ -36,7 +46,7 @@
 .button {
     padding: 5px 10px;
     margin: 10px;
-    font-size: .7em;
+    font-size: 0.7em;
     outline: none;
     border-radius: 4px;
     cursor: pointer;
@@ -56,7 +66,7 @@
 }
 
 .statusContainer {
-    font-size: .8em;
+    font-size: 0.8em;
     padding: 1px;
     display: flex;
     flex-direction: column;
