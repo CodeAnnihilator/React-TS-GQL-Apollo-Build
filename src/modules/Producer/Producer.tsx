@@ -16,8 +16,8 @@ import SubHeader from './frames/SubHeader';
 import styles from './producer.module.scss';
 
 const navigationData = [
-    { path: '/home/groups', text: 'service groups', Icon: BoxIcon },
-    { path: '/home/dashboard', text: 'dashboard', Icon: DashboardIcon },
+    { path: '/groups', text: 'service groups', Icon: BoxIcon },
+    { path: '/dashboard', text: 'dashboard', Icon: DashboardIcon },
 ];
 
 const Producer = () => {
@@ -44,7 +44,7 @@ const Producer = () => {
 				<Switch>
 					<Route exact path='/dashboard' component={() => <div>producer dashboard</div>} />
 					<Route exact path='/groups' component={Groups} />
-					<Redirect to='/dashboard' />
+
 				</Switch>
 			</div>
 		</div>
