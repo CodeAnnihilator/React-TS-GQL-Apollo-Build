@@ -15,7 +15,7 @@ const generateLetters = ({firstName, lastName}: any) => {
 
 const Header = () => {
 
-	const {data, loading} = useGetCurrentUserQuery();
+	const {data, loading, error} = useGetCurrentUserQuery();
 
 	if (loading) return <div>loading...</div>
 

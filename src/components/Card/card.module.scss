@@ -16,33 +16,97 @@
     font-size: 1em;
     text-align: center;
     display: flex;
-    flex: 1;
+    flex: 1 1;
     flex-direction: column;
     justify-content: center;
-    margin: 20px 0;
+    margin: 10px 0;
+    line-height: 23px;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #f7f7f7;
+    border-radius: 4px;
 }
 
 .button {
-	padding: 0;
-    border: none;
-    height: 50px;
-    min-width: 150px;
+    padding: 5px 10px;
+    margin: 10px;
     font-size: .7em;
-    letter-spacing: .77px;
     outline: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bolder;
     color: #fff;
     text-transform: uppercase;
-    background: linear-gradient(90deg,#03a9f4,#7bacfc);
-    margin: 2px;
+    background: #37b6ff;
+    display: flex;
+    align-items: center;
+    line-height: 35px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        background-color: #03a9f4;
+    }
 }
 
-.status {
-	font-size: .7em;
-    padding: 15px 0 10px;
+.statusContainer {
+    font-size: .8em;
+    padding: 1px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-bottom: 1px dashed #dadada;
+    border-top: 1px dashed #dadada;
+    width: 90%;
+}
+
+.status {
+    font-family: CairoBold;
+}
+
+.hasError {
+    border: 1px solid #ff9999;
+}
+
+.error {
+    font-size: 0.8em;
+    color: #e85453;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    line-height: 40px;
+}
+
+.warningIcon {
+    width: 18px;
+    height: 18px;
+    fill: #e85554;
+    margin-right: 10px;
+}
+
+.info {
+    font-size: 0.8em;
+    color: #949494;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    line-height: 40px;
+}
+
+.informationIcon {
+    width: 18px;
+    height: 18px;
+    fill: silver;
+    margin-right: 10px;
 }

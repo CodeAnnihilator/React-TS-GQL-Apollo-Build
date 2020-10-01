@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 
 import { useLoginUserMutation } from 'generated/graphql';
 
@@ -21,6 +21,10 @@ const Login = () => {
 
 	const history = useHistory();
 	const [loginUserMutation] = useLoginUserMutation();
+
+	const token = localStorage.getItem('token');
+
+	if (token) return <Redirect to='/dashboard' />
 
 	return (
 		<div className={styles.container}>

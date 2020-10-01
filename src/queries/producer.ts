@@ -36,3 +36,14 @@ gql`
 		}
 	}
 `;
+
+gql`
+	query getCompanyGroups {
+		getCompanyGroups {
+			groupId
+			serviceGroupName
+			servicesCount
+			hasError
+		}
+	}
+`;

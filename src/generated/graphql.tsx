@@ -106,6 +106,7 @@ export type PendingUsersCompanies = {
   companyName: Scalars['String'];
   email: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
@@ -421,6 +422,7 @@ export type Mutation = {
   changePassword: Scalars['Boolean'];
   logOut: Scalars['Boolean'];
   changeUserLanguage: User;
+  resendInvite: Array<PendingUsersCompanies>;
   isOldPassword: Scalars['Boolean'];
 };
 
@@ -507,6 +509,11 @@ export type MutationChangePasswordArgs = {
 
 export type MutationChangeUserLanguageArgs = {
   code: Scalars['Float'];
+};
+
+
+export type MutationResendInviteArgs = {
+  userId: Scalars['Float'];
 };
 
 
@@ -706,6 +713,17 @@ export type GetCurrentUserQuery = (
   ) }
 );
 
+export type GetCompanyGroupsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCompanyGroupsQuery = (
+  { __typename?: 'Query' }
+  & { getCompanyGroups: Array<(
+    { __typename?: 'ServiceGroup' }
+    & Pick<ServiceGroup, 'groupId' | 'serviceGroupName' | 'servicesCount' | 'hasError'>
+  )> }
+);
+
 
 export const LoginUserDocument = gql`
     mutation loginUser($params: LoginUserInput!) {
@@ -801,3 +819,38 @@ export function useGetCurrentUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type GetCurrentUserQueryHookResult = ReturnType<typeof useGetCurrentUserQuery>;
 export type GetCurrentUserLazyQueryHookResult = ReturnType<typeof useGetCurrentUserLazyQuery>;
 export type GetCurrentUserQueryResult = Apollo.QueryResult<GetCurrentUserQuery, GetCurrentUserQueryVariables>;
+export const GetCompanyGroupsDocument = gql`
+    query getCompanyGroups {
+  getCompanyGroups {
+    groupId
+    serviceGroupName
+    servicesCount
+    hasError
+  }
+}
+    `;
+
+/**
+ * __useGetCompanyGroupsQuery__
+ *
+ * To run a query within a React component, call `useGetCompanyGroupsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCompanyGroupsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCompanyGroupsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCompanyGroupsQuery(baseOptions?: Apollo.QueryHookOptions<GetCompanyGroupsQuery, GetCompanyGroupsQueryVariables>) {
+        return Apollo.useQuery<GetCompanyGroupsQuery, GetCompanyGroupsQueryVariables>(GetCompanyGroupsDocument, baseOptions);
+      }
+export function useGetCompanyGroupsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCompanyGroupsQuery, GetCompanyGroupsQueryVariables>) {
+          return Apollo.useLazyQuery<GetCompanyGroupsQuery, GetCompanyGroupsQueryVariables>(GetCompanyGroupsDocument, baseOptions);
+        }
+export type GetCompanyGroupsQueryHookResult = ReturnType<typeof useGetCompanyGroupsQuery>;
+export type GetCompanyGroupsLazyQueryHookResult = ReturnType<typeof useGetCompanyGroupsLazyQuery>;
+export type GetCompanyGroupsQueryResult = Apollo.QueryResult<GetCompanyGroupsQuery, GetCompanyGroupsQueryVariables>;
