@@ -10,6 +10,19 @@
     top: 0;
 }
 
-.breadcrumbs {
+.el {
+    text-decoration: none;
+    color: #3c3c3c;
+}
 
+.active {
+    color: #000;
+}
+
+.main {
+    display: flex;
+}
+
+.breadcrumbs {
+    padding: 0 5px 0 0;
 }

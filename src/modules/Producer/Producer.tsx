@@ -5,7 +5,7 @@ import { useGetCurrentUserQuery } from 'generated/graphql';
 
 import Navigation from 'components/Navigation';
 
-import { ReactComponent as DashboardIcon} from 'resources/icons/dashboard.svg';
+import { ReactComponent as DashboardIcon } from 'resources/icons/dashboard.svg';
 import { ReactComponent as BoxIcon } from 'resources/icons/box.svg';
 
 import Groups from 'modules/Producer/Groups';
@@ -16,9 +16,9 @@ import SubHeader from './frames/SubHeader';
 import styles from './producer.module.scss';
 
 const navigationData = [
-	{ path: '/groups', text: 'service groups', Icon: BoxIcon },
-	{ path: '/dashboard', text: 'dashboard', Icon: DashboardIcon }
-]
+    { path: '/home/groups', text: 'service groups', Icon: BoxIcon },
+    { path: '/home/dashboard', text: 'dashboard', Icon: DashboardIcon },
+];
 
 const Producer = () => {
 
