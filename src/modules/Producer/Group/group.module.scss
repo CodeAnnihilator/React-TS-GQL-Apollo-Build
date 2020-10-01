@@ -1,0 +1,16 @@
+.container {
+    margin: 20px 30px;
+}
+
+.scrollContainer {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+}

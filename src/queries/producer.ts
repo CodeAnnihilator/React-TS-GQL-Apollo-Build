@@ -47,3 +47,17 @@ gql`
 		}
 	}
 `;
+
+gql`
+	query getCompanyGroupServices($groupId: Float!) {
+		getCompanyGroupServices(groupId: $groupId) {
+			serviceId
+			groupId
+			serviceName
+			createdAt
+			updatedAt
+			status
+			label
+		}
+	}
+`

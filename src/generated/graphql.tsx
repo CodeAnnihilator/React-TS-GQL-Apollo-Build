@@ -724,6 +724,19 @@ export type GetCompanyGroupsQuery = (
   )> }
 );
 
+export type GetCompanyGroupServicesQueryVariables = Exact<{
+  groupId: Scalars['Float'];
+}>;
+
+
+export type GetCompanyGroupServicesQuery = (
+  { __typename?: 'Query' }
+  & { getCompanyGroupServices: Array<(
+    { __typename?: 'CompanyGroupService' }
+    & Pick<CompanyGroupService, 'serviceId' | 'groupId' | 'serviceName' | 'createdAt' | 'updatedAt' | 'status' | 'label'>
+  )> }
+);
+
 
 export const LoginUserDocument = gql`
     mutation loginUser($params: LoginUserInput!) {
@@ -854,3 +867,42 @@ export function useGetCompanyGroupsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetCompanyGroupsQueryHookResult = ReturnType<typeof useGetCompanyGroupsQuery>;
 export type GetCompanyGroupsLazyQueryHookResult = ReturnType<typeof useGetCompanyGroupsLazyQuery>;
 export type GetCompanyGroupsQueryResult = Apollo.QueryResult<GetCompanyGroupsQuery, GetCompanyGroupsQueryVariables>;
+export const GetCompanyGroupServicesDocument = gql`
+    query getCompanyGroupServices($groupId: Float!) {
+  getCompanyGroupServices(groupId: $groupId) {
+    serviceId
+    groupId
+    serviceName
+    createdAt
+    updatedAt
+    status
+    label
+  }
+}
+    `;
+
+/**
+ * __useGetCompanyGroupServicesQuery__
+ *
+ * To run a query within a React component, call `useGetCompanyGroupServicesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCompanyGroupServicesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCompanyGroupServicesQuery({
+ *   variables: {
+ *      groupId: // value for 'groupId'
+ *   },
+ * });
+ */
+export function useGetCompanyGroupServicesQuery(baseOptions?: Apollo.QueryHookOptions<GetCompanyGroupServicesQuery, GetCompanyGroupServicesQueryVariables>) {
+        return Apollo.useQuery<GetCompanyGroupServicesQuery, GetCompanyGroupServicesQueryVariables>(GetCompanyGroupServicesDocument, baseOptions);
+      }
+export function useGetCompanyGroupServicesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCompanyGroupServicesQuery, GetCompanyGroupServicesQueryVariables>) {
+          return Apollo.useLazyQuery<GetCompanyGroupServicesQuery, GetCompanyGroupServicesQueryVariables>(GetCompanyGroupServicesDocument, baseOptions);
+        }
+export type GetCompanyGroupServicesQueryHookResult = ReturnType<typeof useGetCompanyGroupServicesQuery>;
+export type GetCompanyGroupServicesLazyQueryHookResult = ReturnType<typeof useGetCompanyGroupServicesLazyQuery>;
+export type GetCompanyGroupServicesQueryResult = Apollo.QueryResult<GetCompanyGroupServicesQuery, GetCompanyGroupServicesQueryVariables>;

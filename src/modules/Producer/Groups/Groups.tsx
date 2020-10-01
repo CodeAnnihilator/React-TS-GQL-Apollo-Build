@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useGetCompanyGroupsQuery } from 'generated/graphql';
 
@@ -10,6 +11,8 @@ import styles from './groups.module.scss';
 const Groups = () => {
 
 	const {data, loading, error} = useGetCompanyGroupsQuery();
+
+	const location = useLocation();
 	
 	if (loading) return <div>loading...</div>;
 	
@@ -30,7 +33,9 @@ const Groups = () => {
 								hasError={group.hasError}
 								title={group.serviceGroupName}
 								buttonText='start'
+								statusLabel='services'
 								status={group.servicesCount}
+								linkTo={`${location.pathname}/${group.groupId}/services`}
 							/>
 						))
 					}

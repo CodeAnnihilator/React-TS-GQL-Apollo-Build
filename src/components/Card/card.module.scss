@@ -49,6 +49,7 @@
     width: 90%;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
     &:hover {
         background-color: #03a9f4;
     }
@@ -109,4 +110,31 @@
     height: 18px;
     fill: silver;
     margin-right: 10px;
+}
+
+.faded {
+    opacity: 0.5;
+}
+
+.success {
+    font-size: 0.8em;
+    color: #20881b;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0ffdf;
+    border-radius: 4px;
+    line-height: 40px;
+}
+
+.successIcon {
+    width: 18px;
+    height: 18px;
+    fill: green;
+    margin-right: 10px;
+}
+
+.isApproved {
+    border: 1px solid #6dca68;
 }
